@@ -2,6 +2,7 @@ gem_group :default do
   gem 'settingslogic'
   gem 'haml'
   gem 'haml-rails'
+  gem 'simple_form'
 end
 
 gem_group :development do
@@ -68,6 +69,18 @@ run_bundle
 
 run "powder link #{app_name}"
 
+if yes?("You need Twitter Bootstrap?")
+  gem 'twitter-bootstrap-rails'
+  generate "bootstrap:install"
+  generate "bootstrap:layout -f application fluid"
+
+  with_bootstrap = ' --bootstrap'
+else
+  with_bootstrap = ''
+end
+
+generate "simple_form:install#{with_bootstrap}"
+
 git :init
 git add: '.'
 git commit: "-m 'initial commit'"
@@ -88,17 +101,13 @@ if yes?("You need Devise?")
   git commit: "-m 'install Devise'"
 end
 
-if yes?("You need Twitter Bootstrap?")
-  gem 'twitter-bootstrap-rails'
-  generate "bootstrap:install"
-  generate "bootstrap:layout -f application fluid"
-
-  git add: '.'
-  git commit: "-m 'install Twitter Bootstrap'"
-end
-
 puts '--------------------------------------------------'
-puts 'You NEED ACTIVATE pow, Execute Following Code'
+puts 'You NEED ACTIVATE pow, Execute the Following Code'
 puts '  $ cd ~/.pow'
 puts "  $ ln -s ~/rails_projects/#{app_name}"
+puts '--------------------------------------------------'
+
+puts '--------------------------------------------------'
+puts 'if You need admin namespace, do the Following Code'
+puts "  $ rails g controller 'admin/home'"
 puts '--------------------------------------------------'
