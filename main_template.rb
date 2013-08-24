@@ -19,7 +19,7 @@ end
 # Haml setup
 # ---------------------------------------------------------------------------
 remove_file 'app/views/layouts/application.html.erb'
-create_file 'app/views/layouts/application.html.haml'
+run "curl 'https://raw.github.com/akira-hamada/rails_template/master/application.html.haml' -o app/views/layouts/application.html.haml"
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
