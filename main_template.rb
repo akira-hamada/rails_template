@@ -1,3 +1,11 @@
+# Don't fix indent in this block!! I did it on purpose.
+inject_into_file 'config/application.rb', :after => 'class Application < Rails::Application' do <<-RUBY
+
+
+    config.time_zone = 'Tokyo'
+RUBY
+end
+
 gem_group :default do
   gem 'settingslogic'
   gem 'haml'
