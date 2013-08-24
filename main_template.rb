@@ -87,3 +87,9 @@ if yes?("You need Devise?")
   git add: '.'
   git commit: "-m 'install Devise'"
 end
+
+pusts '--------------------------------------------------'
+pusts 'You NEED ACTIVATE pow, Execute Following Code'
+pusts '  $ cd ~/.pow'
+pusts "  $ ln -s ~/rails_projects/#{app_name}"
+pusts '--------------------------------------------------'
