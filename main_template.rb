@@ -75,4 +75,15 @@ git commit: "-m 'initial commit'"
 generate 'rspec:install'
 
 git add: '.'
-git commit: "-m 'rspec install'"
+git commit: "-m 'install rspec'"
+
+if yes?("You need Devise?")
+  gem "devise"
+  generate "devise:install"
+  model_name = ask("What would you like the user model to be called? [user]")
+  model_name = "user" if model_name.blank?
+  generate "devise", model_name
+
+  git add: '.'
+  git commit: "-m 'install Devise'"
+end
