@@ -1,3 +1,13 @@
+gem_group :default do
+  gem 'settingslogic'
+  gem 'haml'
+  gem 'haml-rails'
+end
+
+gem_group :development do
+  gem 'activerecord-mysql-adapter'
+end
+
 gem_group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'better_errors'
@@ -7,12 +17,6 @@ gem_group :development, :test do
   gem 'pry-debugger'
   gem 'hirb'
   gem 'hirb-unicode'
-end
-
-gem_group :default do
-  gem 'settingslogic'
-  gem 'haml'
-  gem 'haml-rails'
 end
 
 # ---------------------------------------------------------------------------
@@ -27,7 +31,7 @@ run "curl 'https://raw.github.com/akira-hamada/rails_template/master/application
 # ---------------------------------------------------------------------------
 create_file "config/database.yml", force: true do
 "setup: &setup
-  adapter: #{options[:database]}
+  adapter: #{options[:database] =~ /mysql/ ? "mysql2" : options[:database]}
   username: #{app_name}
   password: #{app_name}
   encoding: utf8
@@ -54,6 +58,8 @@ end
 # ---------------------------------------------------------------------------
 
 run_bundle
+
+run "powder link #{app_name}"
 
 git :init
 git add: '.'
