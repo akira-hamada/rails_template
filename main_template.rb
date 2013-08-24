@@ -20,6 +20,13 @@ gem_group :development, :test do
 end
 
 # ---------------------------------------------------------------------------
+# Remove Default Files
+# ---------------------------------------------------------------------------
+remove_file "public/index.html"
+remove_file "favicon.ico"
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
 # Haml setup
 # ---------------------------------------------------------------------------
 remove_file 'app/views/layouts/application.html.erb'
@@ -69,8 +76,3 @@ generate 'rspec:install'
 
 git add: '.'
 git commit: "-m 'rspec install'"
-
-remove_file "public/index.html"
-
-git rm: './public/index.html'
-git commit: "-m 'remove default index.html'"
