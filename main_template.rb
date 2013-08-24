@@ -1,5 +1,5 @@
 # Don't fix indent in this block!! I did it on purpose.
-inject_into_file 'config/application.rb', :after => 'class Application < Rails::Application' do <<-RUBY
+inject_into_file 'config/application.rb', after: 'class Application < Rails::Application' do <<-RUBY
 
 
     config.time_zone = 'Tokyo'
@@ -76,6 +76,7 @@ end
 run_bundle
 
 run "powder link #{app_name}"
+run "curl 'https://raw.github.com/akira-hamada/rails_template/master/.pryrc' -o .pryrc"
 
 if yes?("You need Twitter Bootstrap?")
   gem 'twitter-bootstrap-rails'
