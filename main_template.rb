@@ -88,8 +88,17 @@ if yes?("You need Devise?")
   git commit: "-m 'install Devise'"
 end
 
-pusts '--------------------------------------------------'
-pusts 'You NEED ACTIVATE pow, Execute Following Code'
-pusts '  $ cd ~/.pow'
-pusts "  $ ln -s ~/rails_projects/#{app_name}"
-pusts '--------------------------------------------------'
+if yes?("You need Twitter Bootstrap?")
+  gem 'twitter-bootstrap-rails'
+  generate "bootstrap:install"
+  generate "bootstrap:layout -f application fluid"
+
+  git add: '.'
+  git commit: "-m 'install Twitter Bootstrap'"
+end
+
+puts '--------------------------------------------------'
+puts 'You NEED ACTIVATE pow, Execute Following Code'
+puts '  $ cd ~/.pow'
+puts "  $ ln -s ~/rails_projects/#{app_name}"
+puts '--------------------------------------------------'
