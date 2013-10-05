@@ -45,21 +45,6 @@ run "curl 'https://raw.github.com/akira-hamada/rails_template/master/application
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
-# Add Home Controller as root
-# ---------------------------------------------------------------------------
-run "curl 'https://raw.github.com/akira-hamada/rails_template/master/files/app/controllers/home_controller.rb' -o app/controllers/home_controller.rb"
-
-empty_directory "app/views/home"
-run "curl 'https://raw.github.com/akira-hamada/rails_template/master/files/app/views/home/index.html.haml' -o app/views/home/index.html.haml"
-
-inject_into_file 'config/routes.rb', before: '# The priority is based upon order of creation:' do <<-RUBY
-  config.time_zone = 'Tokyo'
-
-RUBY
-end
-# ---------------------------------------------------------------------------
-
-# ---------------------------------------------------------------------------
 # DB setup
 # ---------------------------------------------------------------------------
 create_file "config/database.yml", force: true do
@@ -126,6 +111,21 @@ if yes?("You need Devise?")
   git add: '.'
   git commit: "-m 'install Devise'"
 end
+
+# ---------------------------------------------------------------------------
+# Add Home Controller as root
+# ---------------------------------------------------------------------------
+run "curl 'https://raw.github.com/akira-hamada/rails_template/master/files/app/controllers/home_controller.rb' -o app/controllers/home_controller.rb"
+
+empty_directory "app/views/home"
+run "curl 'https://raw.github.com/akira-hamada/rails_template/master/files/app/views/home/index.html.haml' -o app/views/home/index.html.haml"
+
+inject_into_file 'config/routes.rb', after: "devise_for :#{model_name}s" do <<-RUBY
+  root to: 'home#index'
+
+RUBY
+end
+# ---------------------------------------------------------------------------
 
 puts '--------------------------------------------------'
 puts 'You NEED ACTIVATE pow, Execute the Following Code'
