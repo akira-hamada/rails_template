@@ -11,6 +11,8 @@ gem_group :default do
   gem 'haml'
   gem 'haml-rails'
   gem 'simple_form'
+  gem 'kaminari'
+  gem 'enumerize'
 end
 
 gem_group :development do
