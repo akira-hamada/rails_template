@@ -1,3 +1,16 @@
+#---------------------------------------------------------------------------
+# Rails Application Template
+#---------------------------------------------------------------------------
+# Usage:
+#   rails new appname -T -d mysql -m rails_template/main_template.rb
+#
+#---------------------------------------------------------------------------
+# References
+#   http://guides.rubyonrails.org/rails_application_templates.html
+#   http://textmate.rubyforge.org/thor/Thor/Actions.html
+#   http://stackoverflow.com/questions/4999207/rails-3-application-templates
+#---------------------------------------------------------------------------
+
 # Don't fix indent in this block!! I did it on purpose.
 inject_into_file 'config/application.rb', after: 'class Application < Rails::Application' do <<-RUBY
 
