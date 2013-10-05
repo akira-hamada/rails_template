@@ -121,8 +121,9 @@ empty_directory "app/views/home"
 run "curl 'https://raw.github.com/akira-hamada/rails_template/master/files/app/views/home/index.html.haml' -o app/views/home/index.html.haml"
 
 inject_into_file 'config/routes.rb', after: "devise_for :#{model_name}s" do <<-RUBY
-  root to: 'home#index'
 
+
+  root to: 'home#index'
 RUBY
 end
 # ---------------------------------------------------------------------------
